@@ -16,17 +16,29 @@ class CallbackResource(Resource):
         google_provider_cfg = get_google_provider_cfg()
         token_endpoint = google_provider_cfg["token_endpoint"]
 
+        print(token_endpoint)
+        print()
+
+        print(request.url)
+        print(request.base_url)
+        print(code)
+        print()
+
         token_url, headers, body = client.prepare_token_request(
             token_endpoint,
             authorization_response=request.url,
             redirect_url=request.base_url,
             code=code
         )
+
         print(token_url)
         print(headers)
         print(body)
+        print()
+
         print(os.getenv('GOOGLE_CLIENT_ID'))
         print(os.getenv('GOOGLE_CLIENT_SECRET'))
+        print()
 
         token_response = requests.post(
             token_url,
@@ -35,7 +47,10 @@ class CallbackResource(Resource):
             auth=(os.getenv('GOOGLE_CLIENT_ID'), os.getenv('GOOGLE_CLIENT_SECRET')),
         )
 
-        #TODO: se debe encontrar el error de por que el token no es valido
+        print(token_response.status_code)
+        print(token_response.json())
+
+        # TODO: se debe encontrar el error de por que el token no es valido
         if token_response.json()['error'] == "invalid_client":
             abort(401)
 
