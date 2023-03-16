@@ -1,4 +1,4 @@
-from app.common.domain.Model import ParentModel
+from app.common.domain.ParentModel import ParentModel
 
 
 class Auth(ParentModel):
