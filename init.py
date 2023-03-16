@@ -17,10 +17,6 @@ load_dotenv()
 api = Flask(__name__, template_folder='templates')
 api.secret_key = os.getenv('SECRET_KEY')
 
-
-# Config Web Application
-client = WebApplicationClient(os.getenv('GOOGLE_CLIENT_ID'))
-
 if __name__ == '__main__':
     # Config flask_restful
     Api(api, catch_all_404s=True)
@@ -33,4 +29,4 @@ if __name__ == '__main__':
     api.register_blueprint(users_bp)
 
     # Run project
-    api.run(debug=True)
+    api.run(debug=True, ssl_context="adhoc")
