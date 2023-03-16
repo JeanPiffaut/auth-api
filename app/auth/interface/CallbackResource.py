@@ -22,6 +22,11 @@ class CallbackResource(Resource):
             redirect_url=request.base_url,
             code=code
         )
+        print(token_url)
+        print(headers)
+        print(body)
+        print(os.getenv('GOOGLE_CLIENT_ID'))
+        print(os.getenv('GOOGLE_CLIENT_SECRET'))
 
         token_response = requests.post(
             token_url,
