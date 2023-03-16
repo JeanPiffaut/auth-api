@@ -35,6 +35,7 @@ class CallbackResource(Resource):
             auth=(os.getenv('GOOGLE_CLIENT_ID'), os.getenv('GOOGLE_CLIENT_SECRET')),
         )
 
+        #TODO: se debe encontrar el error de por que el token no es valido
         if token_response.json()['error'] == "invalid_client":
             abort(401)
 
