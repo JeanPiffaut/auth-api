@@ -17,7 +17,7 @@ class LoginResource(Resource):
         request_uri = client.prepare_request_uri(
             authorization_endpoint,
             redirect_uri=request.base_url + "/callback",
-            scope=["email"],
+            scope=["openid", "email", "profile"]
         )
 
         return redirect(request_uri)

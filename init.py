@@ -29,4 +29,4 @@ if __name__ == '__main__':
     api.register_blueprint(users_bp)
 
     # Run project
-    api.run(debug=True, ssl_context="adhoc")
+    api.run('localhost', 8000, debug=True, ssl_context="adhoc")
