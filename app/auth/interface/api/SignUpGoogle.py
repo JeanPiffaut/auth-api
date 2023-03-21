@@ -14,7 +14,7 @@ class SignUpGoogle(Resource):
 
         request_uri = client.prepare_request_uri(
             google_provider_cfg["authorization_endpoint"],
-            redirect_uri=request.base_url + "/callback/sign_up_callback",
+            redirect_uri=os.getenv('BASE_URL') + "/v1/oauth2/google/callback/sign_up_callback",
             scope=['openid', 'email', 'profile']
         )
 
