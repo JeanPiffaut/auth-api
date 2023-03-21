@@ -17,3 +17,15 @@ class ShowUsers(UserApplicationModel):
         users = [result.to_dict()]
 
         return users
+
+    def by_params(self, email=None, name=None):
+        self.user = User()
+        self.user.email = email
+        self.user.name = name
+
+        repo = UserFirestoreRepository()
+        result = repo.view(user_email=self.user.email, user_name=self.user.name)
+
+        users = [result.to_dict()]
+
+        return users
