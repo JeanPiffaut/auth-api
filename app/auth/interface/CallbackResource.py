@@ -33,7 +33,7 @@ class CallbackResource(Resource):
 
         # TODO: se debe encontrar el error de por que el token no es valido
         if token_response.json()['error'] == "invalid_client":
-            pass
+            print(token_response.json())
             # abort(401)
 
         client.parse_request_body_response(json.dumps(token_response.json()))
