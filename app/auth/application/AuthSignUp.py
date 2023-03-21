@@ -14,5 +14,5 @@ class AuthSignUp(AuthApplicationModel):
         if len(users_result) == 0:
             create_user = CreateUser()
             user_reference = create_user.by_params(name, email, picture)
-
+            
 
