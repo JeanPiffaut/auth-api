@@ -15,7 +15,7 @@ class LoginResource(Resource):
         request_uri = client.prepare_request_uri(
             google_provider_cfg["authorization_endpoint"],
             redirect_uri=request.base_url + "/callback",
-            scope=google_provider_cfg['scopes_supported']
+            scope=['openid', 'email', 'profile']
         )
 
         return redirect(request_uri)

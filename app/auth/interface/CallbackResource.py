@@ -3,7 +3,7 @@ import os
 
 import requests
 from flask import request, abort
-from flask_login import logout_user
+from flask_login import login_user
 from flask_restful import Resource
 
 from app.common.interface.Miscellaneous import get_google_provider_cfg
@@ -30,11 +30,6 @@ class CallbackResource(Resource):
             data=body,
             auth=(os.getenv('GOOGLE_CLIENT_ID'), os.getenv('GOOGLE_CLIENT_SECRET'))
         )
-
-        # TODO: se debe encontrar el error de por que el token no es valido
-        if token_response.json()['error'] == "invalid_client":
-            print(token_response.json())
-            # abort(401)
 
         client.parse_request_body_response(json.dumps(token_response.json()))
 
