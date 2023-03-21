@@ -7,10 +7,7 @@ from app import response_structure
 
 class HTMLResource(Resource):
     def get(self):
-        if current_user.is_authenticated:
-            html = render_template('login_template.html')
-            response = make_response(html)
-            response.headers['Content-Type'] = 'text/html'
-            return response
-        else:
-            return response_structure(200)
+        html = render_template('login_template.html')
+        response = make_response(html)
+        response.headers['Content-Type'] = 'text/html'
+        return response

@@ -10,6 +10,6 @@ api = ExtendAPI(auth_bp)
 
 # Add endpoints
 api.add_resource(HTMLResource, '/', endpoint='auth_resource')
-api.add_resource(LoginResource, '/v1/login', endpoint='login_resource')
-api.add_resource(CallbackResource, '/v1/login/callback', endpoint='callback_resource')
-api.add_resource(HTMLResource, '/v1/logout', endpoint='logout_resource')
+api.add_resource(LoginResource, '/v1/oauth2/google', endpoint='login_resource')
+api.add_resource(CallbackResource, '/v1/oauth2/google/callback', endpoint='callback_resource')
+api.add_resource(HTMLResource, '/v1/oauth2/google/logout', endpoint='logout_resource')

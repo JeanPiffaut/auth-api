@@ -16,26 +16,27 @@
                 <h2 class="text-center mb-3">Login Form</h2>
                 <div class="mb-3">
                     <label for="username" class="form-label">Username</label>
-                    <input
-                            type="text"
-                            class="form-control"
-                            id="username"
-                            name="username"
-                            required
-                    />
+                    <input type="text" class="form-control" id="username" name="username" required/>
                 </div>
                 <div class="mb-3">
                     <label for="password" class="form-label">Password</label>
                     <input type="password" class="form-control" id="password" name="password" required/>
                 </div>
-                <button type="submit" class="btn btn-primary w-100">
+                <button type="submit" class="btn btn-primary w-100 mb-3">
                     <span id="submit-text">Submit</span>
                     <span id="loading-spinner" class="d-none">
-            <span class="spinner-border spinner-border-sm" role="status"></span>
-            Loading...
-          </span>
+                        <span class="spinner-border spinner-border-sm" role="status"></span>
+                        Loading...
+                    </span>
                 </button>
-                <a class="btn btn-dark w-100" href="http://127.0.0.1:5000/v1/oauth2/google">Iniciar sesion con Google</a>
+                <div class="col-12 d-flex mb-3">
+                    <hr class="col-5">
+                    <span class="col-2 text-center" style="margin-top: 3px;">o</span>
+                    <hr class="col-5">
+                </div>
+                <a class="btn btn-secondary w-100" href="https://localhost:8000/v1/oauth2/google">
+                    Iniciar sesion con Google
+                </a>
             </form>
         </div>
     </div>
