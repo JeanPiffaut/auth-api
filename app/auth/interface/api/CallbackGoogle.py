@@ -25,12 +25,19 @@ class CallbackGoogle(Resource):
             code=code
         )
 
+        print(token_url)
+        print(body)
+        print(headers)
+
         token_response = requests.post(
             token_url,
             headers=headers,
             data=body,
             auth=(os.getenv('GOOGLE_CLIENT_ID'), os.getenv('GOOGLE_CLIENT_SECRET'))
         )
+
+        print()
+        print(token_response)
 
         try:
             client.parse_request_body_response(json.dumps(token_response.json()))
@@ -41,6 +48,12 @@ class CallbackGoogle(Resource):
         if token_valid:
             userinfo_endpoint = google_provider_cfg["userinfo_endpoint"]
             uri, headers, body = client.add_token(userinfo_endpoint)
+
+            print()
+            print(uri)
+            print(headers)
+            print(body)
+
             userinfo_response = requests.get(uri, headers=headers, data=body)
 
             if userinfo_response.json().get("email_verified"):
@@ -49,7 +62,7 @@ class CallbackGoogle(Resource):
                     auth.google_auth(userinfo_response.json())
                 elif callback_type == "sign_up_callback":
                     auth = AuthSignUp()
-                    auth.google_auth(userinfo_response.json())
+                    auth.google_auth(userinfo_response.json(), None)
 
                 return userinfo_response.json(), 200
             else:

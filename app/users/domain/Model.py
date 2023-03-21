@@ -7,11 +7,13 @@ class User(ParentModel):
     _id: Optional[str]
     _name: Optional[str]
     _email: Optional[str]
+    _picture: Optional[str]
 
-    def __int__(self, user_id=None, user_name=None, user_email=None):
+    def __int__(self, user_id=None, user_name=None, user_email=None, user_picture=None):
         self.id = user_id
         self.name = user_name
         self.email = user_email
+        self.picture = user_picture
 
     @property
     def id(self):
@@ -36,3 +38,11 @@ class User(ParentModel):
     @email.setter
     def email(self, user_email):
         self._email = user_email
+
+    @property
+    def picture(self):
+        return self._picture
+
+    @picture.setter
+    def picture(self, user_picture):
+        self._picture = user_picture

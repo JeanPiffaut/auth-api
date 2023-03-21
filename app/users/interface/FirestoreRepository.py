@@ -20,13 +20,13 @@ class UserFirestoreRepository(FirestoreRepositoryModel):
             coll = coll.document(user_id)
             return coll.get()
 
-    def create(self, user_name, user_email):
+    def create(self, user_name, user_email, user_picture):
         coll = fr.collection(self._collection)
         data = {
-            'user_name': str(user_name),
-            'user_email': str(user_email)
+            'name': str(user_name),
+            'email': str(user_email),
+            'picture': str(user_picture)
         }
 
-        result = coll.add(data)
-        print(result)
-        return result
+        date, reference = coll.add(data)
+        return reference
