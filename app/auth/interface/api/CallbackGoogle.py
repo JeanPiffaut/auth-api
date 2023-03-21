@@ -6,12 +6,13 @@ from flask import request
 from flask_restful import Resource
 
 from app.auth.application.AuthLogin import AuthLogin
+from app.auth.application.AuthSignUp import AuthSignUp
 from app.common.interface.Miscellaneous import get_google_provider_cfg
 from config.web_aplication_client import client
 
 
-class CallbackResource(Resource):
-    def get(self):
+class CallbackGoogle(Resource):
+    def get(self, callback_type):
         code = request.args.get("code")
 
         google_provider_cfg = get_google_provider_cfg()
@@ -43,8 +44,12 @@ class CallbackResource(Resource):
             userinfo_response = requests.get(uri, headers=headers, data=body)
 
             if userinfo_response.json().get("email_verified"):
-                auth = AuthLogin()
-                auth.google_auth(userinfo_response.json())
+                if callback_type == "login_callback":
+                    auth = AuthLogin()
+                    auth.google_auth(userinfo_response.json())
+                elif callback_type == "sign_up_callback":
+                    auth = AuthSignUp()
+                    auth.google_auth(userinfo_response.json())
 
                 return userinfo_response.json(), 200
             else:

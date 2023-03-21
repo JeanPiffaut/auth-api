@@ -25,7 +25,12 @@ class ShowUsers(UserApplicationModel):
 
         repo = UserFirestoreRepository()
         result = repo.view(user_email=self.user.email, user_name=self.user.name)
-
-        users = [result.to_dict()]
+        users = []
+        if len(result) != 0:
+            users = []
+            for doc in result:
+                if doc.exists:
+                    users.append(doc.to_dict())
 
         return users
+

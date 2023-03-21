@@ -1,5 +1,6 @@
 from app.auth.domain.Model import Auth
+from app.common.domain.ParentModel import ParentModel
 
 
-class ApplicationModel:
+class AuthApplicationModel:
     auth: Auth

@@ -4,7 +4,6 @@ import requests
 from flask import Flask
 from flask_restful import Api
 from flask.cli import load_dotenv
-from oauthlib.oauth2 import WebApplicationClient
 
 from app.auth import auth_bp
 from app.users import users_bp
