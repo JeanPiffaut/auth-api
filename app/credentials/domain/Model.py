@@ -3,46 +3,57 @@ from typing import Optional
 from app.common.domain.ParentModel import ParentModel
 
 
-class User(ParentModel):
+class Credential(ParentModel):
     _id: Optional[str]
-    _name: Optional[str]
-    _email: Optional[str]
-    _picture: Optional[str]
+    _username: Optional[str]
+    _token: Optional[str]
+    _user: Optional[str]
+    _type: Optional[str]
 
-    def __int__(self, user_id=None, user_name=None, user_email=None, user_picture=None):
-        self.id = user_id
-        self.name = user_name
-        self.email = user_email
-        self.picture = user_picture
+    def __int__(self, credential_id=None, credential_username=None, credential_token=None, credential_user=None,
+                credential_type=None):
+        self.id = credential_id
+        self.username = credential_username
+        self.token = credential_token
+        self.user = credential_user
+        self.type = credential_type
 
     @property
     def id(self):
         return self._id
 
     @id.setter
-    def id(self, user_id):
-        self._id = user_id
+    def id(self, credential_id):
+        self._id = credential_id
 
     @property
-    def name(self):
-        return self._name
+    def username(self):
+        return self._username
 
-    @name.setter
-    def name(self, user_name):
-        self._name = user_name
-
-    @property
-    def email(self):
-        return self._email
-
-    @email.setter
-    def email(self, user_email):
-        self._email = user_email
+    @username.setter
+    def username(self, credential_username):
+        self._username = credential_username
 
     @property
-    def picture(self):
-        return self._picture
+    def token(self):
+        return self._token
 
-    @picture.setter
-    def picture(self, user_picture):
-        self._picture = user_picture
+    @token.setter
+    def token(self, credential_token):
+        self._token = credential_token
+
+    @property
+    def user(self):
+        return self._user
+
+    @user.setter
+    def user(self, credential_user):
+        self._user = credential_user
+
+    @property
+    def type(self):
+        return self._type
+
+    @type.setter
+    def type(self, credential_type):
+        self._type = credential_type

@@ -2,8 +2,8 @@ from app.common.domain.FirestoreRepositoryModel import FirestoreRepositoryModel
 from config.firestore import fr
 
 
-class CredentialRepository(FirestoreRepositoryModel):
-    _collection = "Credentials"
+class SessionRepository(FirestoreRepositoryModel):
+    _collection = "Sessions"
 
     def view(self, credential_id=None, user_reference=None, username=None, credential_type=None):
         coll = fr.collection(self._collection)
@@ -23,13 +23,15 @@ class CredentialRepository(FirestoreRepositoryModel):
             coll = coll.document(credential_id)
             return coll.get()
 
-    def create(self, token_access, username, user_reference, credential_type):
+    def create(self, user_reference, credential_reference, token, creation_date, last_activity, life_time):
         coll = fr.collection(self._collection)
         data = {
-            'token_access': token_access,
-            'username': username,
             'user': user_reference,
-            'type': credential_type
+            'credential': credential_reference,
+            'token': token,
+            'creation_date': creation_date.timestamp(),
+            'last_activity': last_activity.timestamp(),
+            'life_time': life_time
         }
 
         date, reference = coll.add(data)

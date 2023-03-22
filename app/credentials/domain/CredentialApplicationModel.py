@@ -1,5 +1,5 @@
-from app.users.domain.Model import User
+from app.credentials.domain.Model import Credential
 
 
 class CredentialApplicationModel:
-    user: User
+    credential: Credential

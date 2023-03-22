@@ -27,7 +27,6 @@ class ShowUsers(UserApplicationModel):
         result = repo.view(user_email=self.user.email, user_name=self.user.name)
         users = []
         if len(result) != 0:
-            users = []
             for doc in result:
                 if doc.exists:
                     users.append(doc.to_dict())
